@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1920">
+  <title>Seri Um — a creative journey.</title>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+      background: #fff;
+      width: 1920px;
+      margin: 0 auto;
+      overflow-x: hidden;
+    }
+
+    .page {
+      position: relative;
+      width: 1920px;
+      height: 7185px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    /* ───── STICKY NAV ───── */
+    .nav-helper {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1920px; height: 7185px;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .nav-spacer {
+      position: sticky;
+      top: 0;
+      height: 122px;
+      width: 1920px;
+      pointer-events: none;
+    }
+    .nav-helper-inner {
+      position: absolute;
+      top: 30px; left: 0;
+      width: 1920px; height: 7155px;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .nav-bar {
+      position: sticky;
+      top: 30px;
+      width: 1820px;
+      height: 92px;
+      margin-left: 50px;
+      pointer-events: auto;
+    }
+    .nav-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: fill;
+      display: block;
+    }
+    .nav-logo {
+      position: absolute;
+      left: 50px; top: 38px;
+      font-weight: 500;
+      font-size: 26px;
+      line-height: 22px;
+      color: #fff;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-center {
+      position: absolute;
+      left: 50%; transform: translateX(-50%);
+      top: calc(50% - 9px);
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+      color: #fff;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-projects {
+      position: absolute;
+      right: 0; top: 0;
+      width: 150px; height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+    .nav-projects-divider {
+      position: absolute;
+      left: 0; top: 0;
+      width: 1px;
+      height: 92px;
+      object-fit: fill;
+    }
+    .nav-projects-text {
+      font-weight: 500;
+      font-size: 14px;
+      color: #fff;
+      letter-spacing: 0.42px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ───── HERO ───── */
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1920px; height: 1221px;
+      background: linear-gradient(180deg, #0AAEFC 29.65%, rgba(98,203,253,0.64) 63.823%, rgba(255,255,255,0) 83.152%);
+    }
+    .clouds-wrapper {
+      position: absolute;
+      bottom: 111px; left: 0;
+      width: 1920px; height: 903px;
+      overflow: hidden;
+    }
+    .clouds-img {
+      position: absolute;
+      bottom: -48px; right: 0;
+      width: 2350px; height: 1568px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .clouds-fade {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 1920px; height: 538px;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 72.917%, #fff 100%);
+    }
+    .globe-wrapper {
+      position: absolute;
+      right: 101px; bottom: 532px;
+      width: 240px; height: 235px;
+      overflow: hidden;
+    }
+    .globe-frame {
+      position: absolute;
+      top: 0; left: 0;
+      width: 239.999px; height: 235.024px;
+      animation: spin360 25s linear infinite;
+      transform-origin: center center;
+    }
+    @keyframes spin360 {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    .globe-center {
+      position: absolute;
+      top: 26.38%; left: 26.67%;
+      right: 26.67%; bottom: 25.96%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* ───── HERO TEXT ───── */
+    .hero-title-1 {
+      position: absolute;
+      left: 100px; top: 242px;
+      font-weight: 700;
+      font-size: 115px; line-height: 115px;
+      color: #fff;
+      letter-spacing: 2.3px;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    .hero-title-2 {
+      position: absolute;
+      left: 100px; top: 372px;
+      font-weight: 700;
+      font-size: 115px; line-height: 115px;
+      color: #fff;
+      letter-spacing: 2.3px;
+      white-space: nowrap;
+    }
+    .hero-title-2 .period { font-weight: 400; }
+    .hero-subtitle {
+      position: absolute;
+      left: 100px; top: 521px;
+      font-weight: 500;
+      font-size: 27px; line-height: 47px;
+      color: #fff;
+      white-space: nowrap;
+    }
+
+    /* ───── ABOUT ───── */
+    .about-heading {
+      position: absolute;
+      left: 160px; top: 896px;
+      font-weight: 700;
+      font-size: 45px; line-height: 77px;
+      color: #000;
+    }
+    .about-heading .sw { font-weight: 600; }
+    .about-small-img {
+      position: absolute;
+      left: 1339px; top: 978px;
+      width: 64px; height: 64px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .about-right {
+      position: absolute;
+      left: 873px; top: 1212px;
+      white-space: nowrap;
+    }
+    .about-right-title {
+      font-weight: 700;
+      font-size: 27px; line-height: 27px;
+      color: #000;
+      margin-bottom: 35px;
+    }
+    .about-right-body {
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+      font-weight: 400;
+      font-size: 22px;
+      color: #3F3F3F;
+      letter-spacing: -0.66px;
+    }
+    .about-right-body .single { line-height: 22px; }
+    .about-right-body .multi  { line-height: 40px; }
+
+    /* ───── SKILL CARDS ───── */
+    .skill-card {
+      width: 534px; height: 390px;
+      border-radius: 25px;
+      border: 1px solid #E4E4EA;
+      background: #fff;
+      box-shadow: inset 2px 2px 20px 0px rgba(83,83,83,.03);
+      position: relative;
+      overflow: hidden;
+    }
+    .skill-card-icons {
+      position: absolute;
+      left: 27.95px; top: 27.46px;
+      display: flex; gap: 15px;
+      align-items: center;
+    }
+    .icon-figma {
+      width: 40px; height: 40px;
+      border-radius: 5px;
+      background: #242424;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .icon-figma img {
+      position: absolute;
+      inset: 18.18% 28.79%;
+      display: block;
+    }
+    .icon-ps {
+      width: 40px; height: 40px;
+      border-radius: 5px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .icon-ps img {
+      position: absolute;
+      inset: 0.28%;
+      display: block;
+    }
+    .skill-card-divider {
+      position: absolute;
+      left: 0; right: 0.19%;
+      top: 72.82%;
+      border-top: 1px dashed #CECFD1;
+    }
+    .skill-card-bottom {
+      position: absolute;
+      left: 39.52%; right: 39.51%;
+      top: 82.52%; bottom: 9.54%;
+      object-fit: contain;
+      object-position: bottom;
+      pointer-events: none;
+    }
+    .card-wrap {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-label {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    /* ───── PORTFOLIO WINDOW IMAGE ───── */
+    .window-img {
+      position: absolute;
+      right: 0; top: 2150px;
+      width: 420px; height: 728px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* ───── SCROLL TO BEGIN ───── */
+    .scroll-label {
+      position: absolute;
+      left: 125px; top: 2693px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 400;
+      font-size: 18px; line-height: 18px;
+      color: #000;
+      letter-spacing: 0.54px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .scroll-dot {
+      width: 10px; height: 10px;
+      flex-shrink: 0;
+    }
+    .scroll-heading {
+      position: absolute;
+      left: 100px; top: 2764px;
+      font-weight: 500;
+      font-size: 50px; line-height: 68px;
+      color: #000;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .scroll-arrow {
+      position: absolute;
+      left: 100px; top: 2964px;
+      width: 58px; height: 58px;
+    }
+
+    /* ───── FILE MANAGER SECTION ───── */
+    .fm-section {
+      position: absolute;
+      left: 0; top: 3136px;
+      width: 1920px; height: 890px;
+      overflow: hidden;
+    }
+    .fm-ocean {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 850px;
+      object-fit: cover;
+      mix-blend-mode: darken;
+    }
+    .fm-blue-overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 1920px; height: 850px;
+      background: linear-gradient(180deg, #0AAEFC 29.65%, rgba(10,174,252,0) 100%);
+      mix-blend-mode: soft-light;
+      opacity: 0.7;
+    }
+    .fm-fade {
+      position: absolute;
+      bottom: 40px; left: 0;
+      width: 1920px; height: 407px;
+      background: linear-gradient(0deg, #fff 0%, rgba(255,255,255,0) 100%);
+    }
+    .fm-clouds {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 1920px; height: 903px;
+      overflow: hidden;
+      opacity: 0.6;
+    }
+    .fm-clouds-img {
+      position: absolute;
+      bottom: -48px; right: 0;
+      width: 2350px; height: 1568px;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .fm-clouds-fade {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 1920px; height: 538px;
+      background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.5) 72.917%, #fff 100%);
+    }
+    .fm-window {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, calc(-50% - 30px));
+      width: 400px;
+      background: #F4F7F5;
+      border: 1px solid #E4E4EA;
+      border-radius: 10px;
+      box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    .fm-titlebar {
+      padding: 14px 16px 12px;
+      border-bottom: 1px solid #E4E4EA;
+      text-align: center;
+      font-weight: 400;
+      font-size: 15px; line-height: 15px;
+      color: #2F3033;
+      letter-spacing: 0.3px;
+    }
+    .fm-body {
+      padding: 28px 32px 32px;
+      display: flex;
+      justify-content: center;
+    }
+    .fm-folders {
+      display: flex;
+      gap: 50px;
+      align-items: flex-start;
+    }
+    .fm-folder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    .fm-folder:hover img { transform: scale(1.05); }
+    .fm-folder img {
+      width: 65px; height: 51px;
+      object-fit: contain;
+      transition: transform 0.15s;
+    }
+    .fm-folder span {
+      font-weight: 500;
+      font-size: 13px; line-height: 13px;
+      color: #000;
+      text-align: center;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ───── PROJECT CARDS ───── */
+    .project-card {
+      position: absolute;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .project-card:hover .proj-img { transform: scale(1.02); }
+    .proj-union {
+      position: absolute;
+      top: 0; left: 0;
+      pointer-events: none;
+    }
+    .proj-img-wrap {
+      position: absolute;
+      left: 17px; top: 60px;
+      width: 686px; height: 476px;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .proj-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+    .proj-badges {
+      position: absolute;
+      right: 17px; top: 0;
+      display: flex;
+      gap: 5px;
+    }
+    .badge {
+      display: flex;
+      align-items: center;
+      padding: 7px 16px;
+      border-radius: 500px;
+      font-weight: 500;
+      font-size: 14px; line-height: 14px;
+      letter-spacing: -0.42px;
+      white-space: nowrap;
+    }
+    .badge-ol { border: 1px solid #000; color: #000; }
+    .badge-fl { background: #000; color: #fff; }
+    .proj-num-row {
+      position: absolute;
+      left: 17px; top: 25px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .proj-dot { width: 10px; height: 10px; flex-shrink: 0; }
+    .proj-num {
+      font-weight: 400;
+      font-size: 15px; line-height: 15px;
+      color: #000;
+      letter-spacing: 0.45px;
+      text-transform: uppercase;
+    }
+    .proj-name {
+      position: absolute;
+      left: 17px; bottom: 0;
+      font-weight: 600;
+      font-size: 32px; line-height: 32px;
+      color: #000;
+      white-space: nowrap;
+    }
+    .proj-year {
+      position: absolute;
+      right: 17px; bottom: 0;
+      font-weight: 400;
+      font-size: 17px; line-height: 17px;
+      color: #000;
+      text-align: right;
+      letter-spacing: 0.34px;
+      white-space: nowrap;
+    }
+
+    /* ───── FOOTER ───── */
+    .footer-section {
+      position: absolute;
+      left: 0; top: 5920px;
+      width: 1920px; height: 1265px;
+    }
+    .footer-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+    .footer-heading {
+      position: absolute;
+      left: 160px; top: 622px;
+      transform: translateY(-50%);
+      font-weight: 500;
+      font-size: 118px; line-height: 139px;
+      color: #fff;
+      letter-spacing: 2.36px;
+      text-transform: capitalize;
+      white-space: nowrap;
+    }
+    .footer-heading em { font-style: italic; }
+    .footer-sub {
+      position: absolute;
+      left: 160px; top: 845px;
+      font-weight: 500;
+      font-size: 22px; line-height: 35px;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .footer-cta {
+      position: absolute;
+      left: 160px; top: 1020px;
+      display: flex;
+      gap: 15px;
+    }
+    .footer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 65px;
+      padding: 24px 35px;
+      border-radius: 500px;
+      border: 1.5px solid #fff;
+      background: none;
+      text-decoration: none;
+    }
+    .footer-btn-text {
+      font-weight: 500;
+      font-size: 23px; line-height: 20px;
+      color: #fff;
+      letter-spacing: 0.46px;
+      white-space: nowrap;
+    }
+    .footer-btn-icon {
+      width: 49px; height: 43px;
+      object-fit: cover;
+    }
+    .footer-stamps {
+      position: absolute;
+      left: 1026px; top: 934px;
+    }
+    .stamp-1 {
+      position: absolute;
+      left: 23.88px; top: 0;
+      width: 60px; height: 70px;
+      transform: rotate(22.52deg);
+      object-fit: cover;
+      box-shadow: 0px 4px 7px 0px rgba(0,0,0,0.25);
+    }
+    .stamp-2 {
+      position: absolute;
+      left: 0; top: 12px;
+      width: 48.188px; height: 87.767px;
+      transform: rotate(34.06deg);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ───── STICKY NAV ───── -->
+  <div class="nav-helper"><div class="nav-spacer"></div></div>
+  <div class="nav-helper-inner">
+    <div class="nav-bar">
+      <img class="nav-bg" src="https://www.figma.com/api/mcp/asset/efca6048-93dc-4f7e-8bed-fd7d8315e5b2" alt="">
+      <span class="nav-logo">SERI UM</span>
+      <span class="nav-center">© SERI UM, a creative journey.2026✈</span>
+      <a class="nav-projects" href="#section-projects">
+        <img class="nav-projects-divider" src="https://www.figma.com/api/mcp/asset/9133cecf-2caf-49b1-80c5-c033daa475a3" alt="">
+        <span class="nav-projects-text">PROJECTS</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ───── HERO ───── -->
+  <div class="hero-bg">
+    <div class="clouds-wrapper">
+      <img class="clouds-img" src="https://www.figma.com/api/mcp/asset/62a84fda-5e24-4f82-8d08-62dc7da84c62" alt="">
+      <div class="clouds-fade"></div>
+    </div>
+    <div class="globe-wrapper">
+      <img class="globe-center" src="https://www.figma.com/api/mcp/asset/d46846c2-2607-45be-af61-871704707785" alt="">
+    </div>
+  </div>
+
+  <p class="hero-title-1">Seri Um,</p>
+  <p class="hero-title-2">a creative <em>journey</em><span class="period">.</span></p>
+  <div class="hero-subtitle">
+    <p>출발 전 안내 말씀 드리겠습니다. 만나서 반갑습니다! 😁</p>
+    <p>지름길을 이용하여 원하시는 목적지에 빨리 도착할 수 있도록 노력하겠습니다</p>
+  </div>
+
+  <!-- ───── ABOUT ───── -->
+  <div class="about-heading">
+    <p>디자인💡 감각과 코드에 대한 이해,👏</p>
+    <p>다양한 프로젝트 경험을 바탕으로👀 색다른 디지털 경험을 창조하<span class="sw">는</span></p>
+    <p><span class="sw">UI</span>·UX 디자이너 엄세리입니다.</p>
+  </div>
+  <img class="about-small-img" src="https://www.figma.com/api/mcp/asset/3e21e752-16bf-459d-8b35-44b50ae01d59" alt="">
+  <div class="about-right">
+    <p class="about-right-title">저의 강점은 무엇보다도 문제를 해결하는 압도적인 추진력입니다.</p>
+    <div class="about-right-body">
+      <p class="single">문제를 인지하는 순간 즉각적으로 액션 플랜을 수립하고 실행하는 '실행 중심형 디자이너'입니다.</p>
+      <p class="multi">주기적인 서비스 벤치마킹과 분석을 통해 잠재적 문제점을 데이터와 맥락 기반으로 도출하며,<br>뛰어난 커뮤니케이션 역량으로 팀의 싱크를 빠르게 조율합니다.<br>특히 최근에는 AI를 활용해 직무적 전문성을 기술적으로 확장해 나가고 있습니다.</p>
+    </div>
+  </div>
+
+  <!-- ───── DECORATIVE LEFT ───── -->
+  <div style="position:absolute;left:34px;top:1307px;width:434.996px;height:410.3px;display:flex;align-items:center;justify-content:center;">
+    <img src="https://www.figma.com/api/mcp/asset/f4bc3afa-2fb0-4898-8e5f-fee5839a0e0e" alt=""
+         style="width:412.452px;height:386.119px;transform:rotate(-3.46deg);display:block;">
+  </div>
+
+  <!-- ───── SKILL CARD 1 : UX·UI Design (rotate -4.47°) ───── -->
+  <div class="card-wrap" style="left:181px;top:1670.99px;width:562.771px;height:430.432px;">
+    <div style="transform:rotate(-4.47deg);">
+      <div class="skill-card">
+        <div class="skill-card-divider"></div>
+        <img class="skill-card-bottom" src="https://www.figma.com/api/mcp/asset/43278eb2-081c-4736-900c-b5360d87ba24" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="card-label" style="left:352px;top:1753.74px;width:211px;height:34px;">
+    <p style="transform:rotate(-4.47deg);font-weight:700;font-size:24px;line-height:30px;color:#000;text-align:center;white-space:nowrap;">🐹‍🔧</p>
+  </div>
+  <div class="card-label" style="left:352px;top:1807.24px;width:211px;height:48px;">
+    <p style="transform:rotate(-4.47deg);font-weight:700;font-size:32px;line-height:32px;color:#000;text-align:center;letter-spacing:0.64px;white-space:nowrap;">UX·UI Design</p>
+  </div>
+  <div class="card-label" style="left:263px;top:1851.82px;width:400px;height:95px;">
+    <p style="transform:rotate(-4.47deg);font-weight:400;font-size:20px;line-height:32px;color:#3F3F3F;text-align:center;width:397px;">사용자에게 새롭고 더 편리한 경험을 제공하기 위해 문제를 해결하고 고객의 경험을 설계합니다.</p>
+  </div>
+
+  <!-- ───── SKILL CARD 2 : AI-Native Designer (no rotation) ───── -->
+  <div style="position:absolute;left:693px;top:1710px;">
+    <div class="skill-card">
+      <div class="skill-card-divider"></div>
+      <img class="skill-card-bottom" src="https://www.figma.com/api/mcp/asset/43278eb2-081c-4736-900c-b5360d87ba24" alt="">
+    </div>
+  </div>
+  <p style="position:absolute;left:729px;top:1765px;width:462px;font-weight:700;font-size:24px;line-height:30px;color:#000;text-align:center;letter-spacing:0.48px;white-space:nowrap;">🧠📋</p>
+  <p style="position:absolute;left:729px;top:1834px;width:462px;font-weight:700;font-size:32px;line-height:32px;color:#000;text-align:center;letter-spacing:0.64px;white-space:nowrap;">AI-Native Designer</p>
+  <div style="position:absolute;left:729px;top:1886px;width:462px;font-weight:400;font-size:20px;line-height:32px;color:#3F3F3F;text-align:center;letter-spacing:-0.6px;">
+    <p>AI 에이전트를 설계 과정에 적극 도입합니다.</p>
+    <p>디자인 시스템의 코드 정합성을 검증하고,</p>
+    <p>개발 효율을 극대화합니다</p>
+  </div>
+
+  <!-- ───── SKILL CARD 3 : Teamwork (rotate +5.24°) ───── -->
+  <div class="card-wrap" style="left:1213.66px;top:1658.91px;width:567.363px;height:437.105px;">
+    <div style="transform:rotate(5.24deg);">
+      <div class="skill-card">
+        <div class="skill-card-divider"></div>
+        <img class="skill-card-bottom" src="https://www.figma.com/api/mcp/asset/43278eb2-081c-4736-900c-b5360d87ba24" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="card-label" style="left:1482px;top:1735.77px;width:52px;height:34px;">
+    <p style="transform:rotate(5.24deg);font-weight:700;font-size:24px;line-height:30px;color:#000;text-align:center;white-space:nowrap;">👥💬</p>
+  </div>
+  <div class="card-label" style="left:1417px;top:1799.1px;width:170px;height:47px;">
+    <p style="transform:rotate(5.24deg);font-weight:700;font-size:32px;line-height:32px;color:#000;text-align:center;letter-spacing:0.64px;white-space:nowrap;text-transform:capitalize;">Teamwork</p>
+  </div>
+  <div class="card-label" style="left:1270px;top:1838.08px;width:453px;height:105px;">
+    <div style="transform:rotate(5.24deg);font-weight:400;font-size:20px;line-height:32px;color:#3F3F3F;text-align:center;letter-spacing:-0.6px;width:449px;">
+      <p>좋은 팀워크를 위해 저의 취약점을 숨기지 않습니다.</p>
+      <p>피드백을 가감 없이 수용함으로써 성장하려합니다.</p>
+    </div>
+  </div>
+
+  <!-- ───── DIVIDER ROW ───── -->
+  <div style="position:absolute;left:160px;top:2191px;width:1600px;display:flex;align-items:center;gap:0;">
+    <div style="font-weight:400;font-size:18px;line-height:26px;color:#000;letter-spacing:0.36px;flex-shrink:0;">
+      <p>A Blend of</p><p>Creativity &amp; Fun</p>
+    </div>
+    <div style="flex:1;border-top:1px dashed #CECFD1;margin:0 12px;"></div>
+    <img src="https://www.figma.com/api/mcp/asset/2c8ea0e2-733a-44fd-a711-ece494cbe28b" alt=""
+         style="width:84px;height:84px;flex-shrink:0;margin-top:-16px;">
+    <div style="flex:1;border-top:1px dashed #CECFD1;margin:0 12px;"></div>
+    <div style="font-weight:400;font-size:18px;line-height:26px;color:#000;letter-spacing:0.36px;text-align:center;flex-shrink:0;">
+      <p>Based in</p><p>Seoul, KOREA</p>
+    </div>
+    <div style="flex:1;border-top:1px dashed #CECFD1;margin:0 12px;"></div>
+    <img src="https://www.figma.com/api/mcp/asset/2c8ea0e2-733a-44fd-a711-ece494cbe28b" alt=""
+         style="width:84px;height:84px;flex-shrink:0;margin-top:-16px;">
+    <div style="flex:1;border-top:1px dashed #CECFD1;margin:0 12px;"></div>
+    <div style="font-weight:400;font-size:18px;line-height:26px;color:#000;letter-spacing:0.36px;text-align:right;flex-shrink:0;white-space:nowrap;">
+      © SERI UM, 2018-2026
+    </div>
+  </div>
+
+  <!-- ───── AIRPLANE WINDOW IMAGE (node 8638:1584) ───── -->
+  <img class="window-img"
+       src="https://www.figma.com/api/mcp/asset/b6fa6cf4-6d66-4f45-bc62-117d985eabc5"
+       alt="airplane window">
+
+  <!-- ───── SCROLL TO BEGIN ───── -->
+  <div class="scroll-label" id="section-about">
+    <img class="scroll-dot" src="https://www.figma.com/api/mcp/asset/a2cde6f9-b10d-4032-b0d8-7ad4c3eeebf0" alt="">
+    <span>2026 웹디자인 과제</span>
+  </div>
+  <div class="scroll-heading">
+    <p>SCROLL TO</p>
+    <p>BEGIN YOUR JOURNEY ✈ </p>
+  </div>
+  <img class="scroll-arrow" src="https://www.figma.com/api/mcp/asset/37b2f845-75fd-4bb0-8838-2543b7427918" alt="">
+
+  <!-- ───── FILE MANAGER SECTION ───── -->
+  <div class="fm-section">
+    <img class="fm-ocean" src="https://www.figma.com/api/mcp/asset/ea1652e3-c5db-403b-8e2f-cdb3fea5bbcc" alt="">
+    <div class="fm-blue-overlay"></div>
+    <div class="fm-fade"></div>
+    <div class="fm-clouds">
+      <img class="fm-clouds-img" src="https://www.figma.com/api/mcp/asset/62a84fda-5e24-4f82-8d08-62dc7da84c62" alt="">
+      <div class="fm-clouds-fade"></div>
+    </div>
+    <div class="fm-window">
+      <div class="fm-titlebar">umseri__2014👧 - 2100👵.zip</div>
+      <div class="fm-body">
+        <div class="fm-folders">
+          <a class="fm-folder" href="#project-1">
+            <img src="https://www.figma.com/api/mcp/asset/c9038b5b-8da9-4fc0-b12d-718b616b8246" alt="">
+            <span>캐릭터 소개</span>
+          </a>
+          <a class="fm-folder" href="#project-2">
+            <img src="https://www.figma.com/api/mcp/asset/c9038b5b-8da9-4fc0-b12d-718b616b8246" alt="">
+            <span>책 소개</span>
+          </a>
+          <a class="fm-folder" href="#project-3">
+            <img src="https://www.figma.com/api/mcp/asset/c9038b5b-8da9-4fc0-b12d-718b616b8246" alt="">
+            <span>UI 제작</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div style="position:absolute;top:calc(50% + 21.55px - 30px);left:calc(50% + 205.03px - 30px);">
+      <img src="https://www.figma.com/api/mcp/asset/2d170a0f-26bf-4098-b82c-91c2f5dc36fc" alt=""
+           style="width:31px;height:31px;transform:rotate(2.08deg);display:block;">
+    </div>
+  </div>
+
+  <!-- ───── PROJECTS ───── -->
+  <span id="section-projects" style="position:absolute;top:4100px;"></span>
+
+  <!-- Project 01 -->
+  <a id="project-1" class="project-card"
+     href="https://fish020785-sys.github.io/hero-project/" target="_blank"
+     style="left:170px;top:4222px;width:720px;height:610px;">
+    <img class="proj-union" src="https://www.figma.com/api/mcp/asset/1df6dbd9-a389-4ee1-b841-eef432b441a9" alt=""
+         style="width:720px;height:553px;">
+    <div class="proj-img-wrap">
+      <img class="proj-img" src="https://www.figma.com/api/mcp/asset/891f3ca8-2094-4062-bb15-307738575225" alt="캐릭터 사이트">
+    </div>
+    <div class="proj-num-row">
+      <img class="proj-dot" src="https://www.figma.com/api/mcp/asset/a2cde6f9-b10d-4032-b0d8-7ad4c3eeebf0" alt="">
+      <span class="proj-num">project 01</span>
+    </div>
+    <div class="proj-badges">
+      <span class="badge badge-ol">HTML</span>
+      <span class="badge badge-fl">1차 과제</span>
+    </div>
+    <span class="proj-name">캐릭터 사이트</span>
+    <span class="proj-year">©2026</span>
+  </a>
+
+  <!-- Project 02 -->
+  <a id="project-2" class="project-card"
+     href="https://fish020785-sys.github.io/assignments/class5_book.html" target="_blank"
+     style="left:1029px;top:4222px;width:720px;height:610px;">
+    <img class="proj-union" src="https://www.figma.com/api/mcp/asset/1df6dbd9-a389-4ee1-b841-eef432b441a9" alt=""
+         style="width:720px;height:553px;">
+    <div class="proj-img-wrap">
+      <img class="proj-img" src="https://www.figma.com/api/mcp/asset/243c213a-91ed-444f-bdf0-73852d2d4fee" alt="책 소개 사이트">
+    </div>
+    <div class="proj-num-row">
+      <img class="proj-dot" src="https://www.figma.com/api/mcp/asset/a2cde6f9-b10d-4032-b0d8-7ad4c3eeebf0" alt="">
+      <span class="proj-num">project 02</span>
+    </div>
+    <div class="proj-badges">
+      <span class="badge badge-ol">HTML+CSS</span>
+      <span class="badge badge-fl">2차 과제</span>
+    </div>
+    <span class="proj-name">책 소개 사이트</span>
+    <span class="proj-year">©2026</span>
+  </a>
+
+  <!-- Project 03 -->
+  <a id="project-3" class="project-card"
+     href="https://www.figma.com/proto/GHdY4styU4UkPKnLjz2rdL/%EC%97%84%EC%84%B8%EB%A6%AC%EA%B3%BC%EC%A0%9C?page-id=0%3A1&node-id=1898-5113&p=f&viewport=4800%2C567%2C0.17&t=dzhqmAFzsuEjcn4x-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=1898%3A5113" target="_blank"
+     style="left:562px;top:5048px;width:796px;height:675px;">
+    <img class="proj-union" src="https://www.figma.com/api/mcp/asset/72a9da45-5f34-4aaa-a8f1-947e1691713d" alt=""
+         style="width:796px;height:618px;">
+    <div style="position:absolute;left:18px;top:70px;width:760px;height:530px;border-radius:20px;overflow:hidden;">
+      <img src="https://www.figma.com/api/mcp/asset/09676ee2-42bd-4191-b334-7312f13dcc68" alt="UI 디자인"
+           style="position:absolute;height:587.83%;left:-15.22%;top:-208.34%;width:116.45%;max-width:none;pointer-events:none;">
+      <img src="https://www.figma.com/api/mcp/asset/e62b9206-4407-4b74-9441-be19da0c24ec" alt=""
+           style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:20px;">
+    </div>
+    <div style="position:absolute;left:18px;top:27px;display:flex;align-items:center;gap:15px;">
+      <img class="proj-dot" src="https://www.figma.com/api/mcp/asset/a2cde6f9-b10d-4032-b0d8-7ad4c3eeebf0" alt="">
+      <span class="proj-num">project 03</span>
+    </div>
+    <div style="position:absolute;right:18px;top:5px;display:flex;gap:5px;">
+      <span class="badge badge-ol">기획</span>
+      <span class="badge badge-fl">UI디자인</span>
+    </div>
+    <span style="position:absolute;left:18px;bottom:0;font-weight:600;font-size:32px;line-height:32px;color:#000;white-space:nowrap;">UI 디자인</span>
+    <span style="position:absolute;right:18px;bottom:0;font-weight:400;font-size:17px;line-height:17px;color:#000;letter-spacing:0.34px;white-space:nowrap;">©2026</span>
+  </a>
+
+  <!-- ───── FOOTER ───── -->
+  <div class="footer-section">
+    <img class="footer-bg" src="https://www.figma.com/api/mcp/asset/9ef6df9f-4e1c-46bd-b222-2d5d4e87a765" alt="">
+
+    <div class="footer-heading">
+      <p>Let's start</p>
+      <p>a <em>journey</em></p>
+      <p>Together <em>!</em></p>
+    </div>
+
+    <div class="footer-sub">
+      <p>오늘 포트폴리오를 봐주셔서 즐거웠습니다.</p>
+      <p>다시 함께하기를 희망합니다 :)</p>
+    </div>
+
+    <div class="footer-cta">
+      <div class="footer-btn">
+        <span class="footer-btn-text">znznrnldudnj@naver.com</span>
+      </div>
+      <a class="footer-btn"
+         href="https://www.google.com/search?sca_esv=58dd0337d7f8c757&sxsrf=ANbL-n6d9tC3jruJDoOoueZEButnsximjQ:1780172305371&udm=2&fbs=ADc_l-bD_nyrjATWBKup7flJ4rea5XFXsPHwMjGsTekJ1HCohLl5jVfW6Wa1gJhEgNeZVlX4vEYjwla_a-g0kroAFGNtlnyBzvrTSCFOEd3uqXcIoAoiOPn0OSJcbh0oAgT3p-IbBZWCITOSfXKrQ6pNLIphNa_S-TsHlZnQkA5QfOuDQCx18Xug5OKsZMkXnds3AxwlpSxN49QvkG_mhNFG98dpqJCj5w&q=cute+puppy&sa=X&sqi=2&ved=2ahUKEwj7_5nP6uGUAxV1n68BHU8lJTsQtKgLegQIGRAB&biw=2518&bih=1296&dpr=1" target="_blank">
+        <img class="footer-btn-icon"
+             src="https://www.figma.com/api/mcp/asset/7591f23b-4b27-4a5b-826c-a420a84ff534" alt="">
+      </a>
+    </div>
+
+    <div class="footer-stamps">
+      <img class="stamp-1" src="https://www.figma.com/api/mcp/asset/405267b9-33dd-4a13-9713-de0039f73b66" alt="">
+      <img class="stamp-2" src="https://www.figma.com/api/mcp/asset/915f87ab-56a4-4bf3-bb81-a8d3918f11f9" alt="">
+    </div>
+
+    <div style="position:absolute;right:70px;top:1053px;">
+      <img src="https://www.figma.com/api/mcp/asset/7dddd9a0-c7a3-42c6-b432-7c27b0bf8c26" alt=""
+           style="width:142px;height:142px;display:block;">
+    </div>
+    <div style="position:absolute;right:82px;top:1065px;">
+      <img src="https://www.figma.com/api/mcp/asset/b435e5c3-20b8-4c7a-8f00-5dab0e0b2557" alt=""
+           style="width:118px;height:118px;display:block;">
+    </div>
+    <img src="https://www.figma.com/api/mcp/asset/2c8ea0e2-733a-44fd-a711-ece494cbe28b" alt=""
+         style="position:absolute;right:119.23px;top:1102.23px;width:44.493px;height:44.493px;">
+  </div>
+
+</div>
+</body>
+</html>
