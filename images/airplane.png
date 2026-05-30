@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 84 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="mdi:airplane">
+<rect width="84" height="84" fill="white"/>
+<path id="Vector" d="M55.9598 41.9993C55.9598 43.1419 55.04 44.0618 53.907 44.0521L46.3736 44.0521L39.5277 55.0036L36.7874 55.0133L40.2249 44.0618L32.6722 44.0618L30.629 46.8021L28.5665 46.7924L29.9415 42.009L28.5665 37.2062L30.6387 37.1868L32.7012 39.9658L40.1959 39.9658L36.7874 28.9853L39.5277 28.995L46.3736 39.9465L53.907 39.9465C55.0109 39.9271 55.9792 40.8954 55.9598 41.9993V41.9993Z" fill="var(--fill-0, black)"/>
+</g>
+</svg>
